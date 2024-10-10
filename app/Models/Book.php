@@ -2,20 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Genre;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Book extends Model
 {
     use HasFactory;
-    public function author()
+
+    public function authors()
     {
-        return $this->belongsTo(Author::class);
+        return $this->belongsToMany(Author::class);
     }
 
-    public function reviews()
+    public function genres()
     {
-        return $this->hasMany(Review::class);
+        return $this->belongsToMany(Genre::class);
     }
 
 }
+
