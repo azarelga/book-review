@@ -6,25 +6,12 @@ import "swiper/css/bundle";
 document.addEventListener("DOMContentLoaded", function () {
     const swiper = new Swiper(".multiple-slide-carousel", {
         loop: true,
-        slidesPerView: 3,
-        spaceBetween: 20,
+        slidesPerView: 6, // Adjusts the number of slides shown based on container width
+        spaceBetween: 10, // Adjust this value for space between slides
+        centeredSlides: false, // Ensure slides are not centered if you want them to align to the left
         navigation: {
-            nextEl: ".multiple-slide-carousel .swiper-button-next",
-            prevEl: ".multiple-slide-carousel .swiper-button-prev",
-        },
-        breakpoints: {
-            1920: {
-                slidesPerView: 3,
-                spaceBetween: 30,
-            },
-            1028: {
-                slidesPerView: 2,
-                spaceBetween: 30,
-            },
-            990: {
-                slidesPerView: 1,
-                spaceBetween: 0,
-            },
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
         },
     });
 
