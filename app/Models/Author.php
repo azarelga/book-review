@@ -14,5 +14,13 @@ class Author extends Model
     {
         return $this->belongsToMany(Book::class);
     }
+
+    public static function mostPopular()
+    {
+        return static::withCount('books')
+                     ->orderBy('books_count', 'desc')
+                     ->first();
+    }
+    
 }
 
