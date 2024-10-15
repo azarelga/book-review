@@ -1,18 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 export default {
-  content: [
-    "./resources/**/*.blade.php",
-    "./resources/**/*.js",
-    "./resources/**/*.vue",
-  ],
-  theme: {
-    extend: {
-      sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
+    content: [
+        "./resources/**/*.blade.php",
+        "./resources/**/*.js",
+        "./resources/**/*.vue",
+        "./node_modules/flowbite/**/*.js",
+    ],
+    theme: {
+        extend: {
+            sans: ["InterVariable", ...defaultTheme.fontFamily.sans],
+        },
     },
-  },
-  plugins: [],
-}
-
+    plugins: [require("flowbite/plugin")],
+};

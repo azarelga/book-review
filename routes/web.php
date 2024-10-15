@@ -5,6 +5,23 @@ use App\Models\Genre;
 use App\Models\Author;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\GenreController;
+
+// Book Routes
+Route::resource('books', BookController::class);
+
+// Author Routes
+Route::resource('authors', AuthorController::class);
+
+// Genre Routes
+Route::resource('genres', GenreController::class);
+
+Route::get('/crud',function()   {
+    return view('crud', ['title' => 'CRUD']);
+});
+
 Route::get('/', function () {
     // batasi hanya 20 data saja
     $books = Book::mostpopular()->take(20);
