@@ -7,9 +7,11 @@ use App\Models\Genre;
 use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests; // Add this line
 
 class BookController extends Controller
 {
+    use AuthorizesRequests;
     public function index()
     {
         // Fetch all books with authors and genres
@@ -27,16 +29,18 @@ class BookController extends Controller
 
     public function store(BookRequest  $request)
     {
+        dd($request->all());
         // Validate the request
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'authors' => 'required|array', // Expecting an array of author IDs
-            'genres' => 'required|array',  // Expecting an array of genre IDs
+            'authors' => 'required|array',
+            'genres' => 'required|array',
         ]);
 
+
         // Create the book
-        $book = Book::create($request->only(['title', 'description', 'published_date', 'rating', 'language', 'pages', 'price', 'cover_image']));
+        $book = Book::create($request->only(['title', 'description']));
 
         // Attach authors and genres
         $book->authors()->attach($request->authors);
@@ -56,18 +60,17 @@ class BookController extends Controller
 
     public function update(Request $request, Book $book)
     {
-        // Validate the request
+        dd('update');
+
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'authors' => 'required|array', // Expecting an array of author IDs
-            'genres' => 'required|array',  // Expecting an array of genre IDs
+            'authors' => 'required|array',
+            'genres' => 'required|array',
         ]);
 
-        // Update the book
         $book->update($request->only(['title', 'description', 'published_date', 'rating', 'language', 'pages', 'price', 'cover_image']));
 
-        // Sync authors and genres
         $book->authors()->sync($request->authors);
         $book->genres()->sync($request->genres);
 

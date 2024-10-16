@@ -1,4 +1,9 @@
-<x-layout>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
     <x-slot:title>Create Book</x-slot:title>
 
     <h1>Create a New Book</h1>
@@ -27,4 +32,4 @@
 
         <button type="submit">Create Book</button>
     </form>
-</x-layout>
+</x-app-layout>

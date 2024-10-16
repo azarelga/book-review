@@ -1,5 +1,9 @@
-<x-layout>
-    <x-slot:title>Edit Book</x-slot:title>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
 
     <h1>Edit Book: {{ $book->title }}</h1>
 
@@ -36,4 +40,4 @@
 
         <button type="submit">Update Book</button>
     </form>
-</x-layout>
+</x-app-layout>
