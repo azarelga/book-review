@@ -35,7 +35,7 @@ Relationship yang kami miliki adalah :
 
 ## Plan
 
-Plan kami adalah membuat website yang dapat menampilkan buku dimana buku ini akan dapat menjadi referensi apabila dibutuhkan oleh user. Data buku dapat ditambahkan oleh user untuk memperbanyak data yang ada. Dari data buku ini, kmai harap dapat membantu user dalam mencari buku dengan lebih mudah.
+Plan kami adalah membuat website yang dapat menampilkan buku, dimana buku ini dapat menjadi referensi apabila dibutuhkan oleh user. User dapat melihat rincian buku dengan melakukan click pada buku yang ada. Dihalaman utama akan disajukan bukun dengan rating terbaik, popular genre, random genre, popular author, dan random author. Data buku dapat ditambahkan oleh user untuk memperbanyak data yang ada. Dari data buku ini, kmai harap dapat membantu user dalam mencari buku dengan lebih mudah.
 
 Week-1 - Membuat project laravel serta melakukan migrasi dan tampilan awal
 
