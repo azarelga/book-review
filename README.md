@@ -60,7 +60,7 @@ Week-2 - Mengimplementasikan CRUD dan autentikasi kepada users
 
 
 ## Link Youtube
-[Click Me](https://youtu.be/I-3xWex36sU)
+[Click Me](https://youtu.be/J19kkkr0ey8)
   
 ## License
 
