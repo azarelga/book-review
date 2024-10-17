@@ -11,9 +11,10 @@ use App\Http\Controllers\GenreController;
 Route::get("/", function () {
     $books = Book::mostpopular()->take(20);
     $mostPopularGenre = Genre::mostPopular();
-
-
     $mostPopularAuthor = Author::mostPopular();
+    $randomGenre = Genre::randomGenre();
+    $randomAuthor = Author::randomAuthor();
+
 
     return view('welcome', [
         'title' => 'Home',
@@ -21,7 +22,11 @@ Route::get("/", function () {
         'popularGenre' => $mostPopularGenre,
         'booksInPopularGenre' => Book::findByGenre($mostPopularGenre->id)->take(30),
         'popularAuthor' => $mostPopularAuthor->name,
-        'booksByPopularAuthor' =>  Book::findByAuthor($mostPopularAuthor->id)->take(30)
+        'booksByPopularAuthor' =>  Book::findByAuthor($mostPopularAuthor->id)->take(30),
+        'randomGenre' => $randomGenre,
+        'booksInRandomGenre' => Book::findByGenre($randomGenre->id)->take(30),
+        'randomAuthor' => $randomAuthor,
+        'booksByRandomAuthor' => Book::findByAuthor($randomAuthor->id)->take(30),
     ]);
 })->name('welcome');
 

@@ -18,9 +18,12 @@ class Author extends Model
     public static function mostPopular()
     {
         return static::withCount('books')
-                     ->orderBy('books_count', 'desc')
-                     ->first();
+            ->orderBy('books_count', 'desc')
+            ->first();
     }
-    
-}
 
+    public static function randomAuthor()
+    {
+        return static::inRandomOrder()->first();
+    }
+}

@@ -19,7 +19,12 @@ class Genre extends Model
     public static function mostPopular()
     {
         return static::withCount('books')
-                     ->orderBy('books_count', 'desc')
-                     ->first();
+            ->orderBy('books_count', 'desc')
+            ->first();
+    }
+
+    public static function randomGenre()
+    {
+        return static::inRandomOrder()->first();
     }
 }
