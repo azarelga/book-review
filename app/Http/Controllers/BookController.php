@@ -24,12 +24,12 @@ class BookController extends Controller
         // Fetch authors and genres for the form
         $authors = Author::all();
         $genres = Genre::all();
-        return view('books.create', compact('authors', 'genres'));
+        return view('dashboard', compact('authors', 'genres'));
     }
 
     public function store(BookRequest  $request)
     {
-        dd($request->all());
+        // dd($request->all());
         // Validate the request
         $request->validate([
             'title' => 'required|string|max:255',
@@ -40,13 +40,13 @@ class BookController extends Controller
 
 
         // Create the book
-        $book = Book::create($request->only(['title', 'description']));
+        $book = Book::create($request->only(['title', 'description', 'rating']));
 
         // Attach authors and genres
         $book->authors()->attach($request->authors);
         $book->genres()->attach($request->genres);
 
-        return redirect()->route('books.index')->with('success', 'Book created successfully.');
+        return redirect()->route('dashboard')->with('success', 'Book created successfully.');
     }
 
     public function edit(Book $book)
@@ -60,8 +60,7 @@ class BookController extends Controller
 
     public function update(Request $request, Book $book)
     {
-        dd('update');
-
+        // dd($book);
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -69,17 +68,17 @@ class BookController extends Controller
             'genres' => 'required|array',
         ]);
 
-        $book->update($request->only(['title', 'description', 'published_date', 'rating', 'language', 'pages', 'price', 'cover_image']));
+        $book->update($request->only(['title', 'description', 'authors', 'genres']));
 
         $book->authors()->sync($request->authors);
         $book->genres()->sync($request->genres);
 
-        return redirect()->route('books.index')->with('success', 'Book updated successfully.');
+        return redirect()->route('dashboard')->with('success', 'Book updated successfully.');
     }
 
     public function destroy(Book $book)
     {
         $book->delete();
-        return redirect()->route('books.index')->with('success', 'Book deleted successfully.');
+        return redirect()->route('dashboard')->with('success', 'Book deleted successfully.');
     }
 }
