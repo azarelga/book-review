@@ -41,9 +41,26 @@ Week-1 - Membuat project laravel serta melakukan migrasi dan tampilan awal
 
 Week-2 - Mengimplementasikan CRUD dan autentikasi kepada users
 
+## Screenshot Website
+
+![image](https://github.com/user-attachments/assets/31d103b0-ba77-47d8-a6fb-e25e6c06aea6)
+
+![image](https://github.com/user-attachments/assets/7edf79fd-9748-49bd-8768-f2232ef2138f)
+
+![image](https://github.com/user-attachments/assets/550078b7-567a-4d2b-869d-53234dfdb786)
+
+![image](https://github.com/user-attachments/assets/6a8da04c-0fc8-47a3-8c90-f2d76b4e1320)
+
+![image](https://github.com/user-attachments/assets/9ab55d4b-150a-4c00-869f-9db56c059dc7)
+
+![image](https://github.com/user-attachments/assets/5ca7a777-7b8f-4b66-a50f-3204c11f720f)
+
+
+
+
+
 ## Link Youtube
 [Click Me](https://youtu.be/I-3xWex36sU)
-
   
 ## License
 
