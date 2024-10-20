@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Artisan::call('import:books', [
+            'file' =>  base_path('database/books.csv')
+        ]);
+
+        $this->command->info('Books imported successfully through seeder!');
         User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@admin.com',
