@@ -12,7 +12,7 @@
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 
-    <title>Blog Page</title>
+    <title>{{ $title }}</title>
 </head>
 
 <body class="h-full">

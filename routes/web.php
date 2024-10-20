@@ -4,9 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Author;
+use App\Http\Middleware\CheckRole;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\GenreController;
+
 
 Route::get("/", function () {
     $books = Book::mostpopular()->take(20);
@@ -14,7 +16,6 @@ Route::get("/", function () {
     $mostPopularAuthor = Author::mostPopular();
     $randomGenre = Genre::randomGenre();
     $randomAuthor = Author::randomAuthor();
-
 
     return view('welcome', [
         'title' => 'Home',
@@ -33,20 +34,27 @@ Route::get("/", function () {
 // Home Page Route
 Route::get('/dashboard', function () {
     $books = Book::paginate(10);
-    return view('dashboard', [
+    return view('admin.dashboard', [
         'title' => 'Home',
         'books' => $books,
         'authors' => Author::all(),
         'genres' => Genre::all(),
     ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(CheckRole::class . ':admin')->name('dashboard');
 
+Route::get('/dashboard', function () {
+    $books = Book::paginate(10);
+    return view('admin.dashboard', [
+        'title' => 'Home',
+        'books' => $books,
+        'authors' => Author::all(),
+        'genres' => Genre::all(),
+    ]);
+})->middleware(CheckRole::class . ':admin')->name('dashboard');
 
 Route::get('/books/{id}', function ($id) {
     return Book::with('authors', 'genres')->find($id);
 });
-
-
 
 // Profile Route (with authentication)
 Route::view('profile', 'profile')
@@ -54,11 +62,9 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 // Book, Author, and Genre Resource Routes
-
 Route::resource('books', BookController::class)->middleware(['auth', 'verified']);
 Route::resource('authors', AuthorController::class);
 Route::resource('genres', GenreController::class);
-
 
 
 // Include Auth Routes (for login, registration, etc.)

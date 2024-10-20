@@ -4,17 +4,18 @@
 
     <div class="w-full relative">
         <div class="swiper multiple-slide-carousel swiper-container relative">
-            {{-- make text book you might like with bold and big font --}}
             <h2 class="text-3xl font-bold mb-4">Books You Might Like</h2>
             <div class="swiper-wrapper">
                 @foreach ($books as $book)
                     <div class="swiper-slide">
                         <button type="button" data-modal-target="readProductModal" data-modal-toggle="readProductModal"
-                            onclick="openReadModal({{ $book->id }})"
+                            onmouseover="openReadModal({{ $book->id }})"
                             class="flex w-full items-center py-2 px-4 hover:bg-gray-100 text-gray-700">
-                            <div class=" flex ">
+                            <div class="flex-col">
                                 <img src="{{ $book->cover_image }}" alt=""
-                                    class="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;">
+                                    class="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms; ">
+                                    <p class="font-bold">{{ $book->title }}</p>
+                                    <p>by {{Str::limit(explode('; ',$book->authors->first()->name)[0], 80)}}</p>
                             </div>
                         </button>
                     </div>
@@ -54,9 +55,11 @@
                         <button type="button" data-modal-target="readProductModal" data-modal-toggle="readProductModal"
                             onclick="openReadModal({{ $book->id }})"
                             class="flex w-full items-center py-2 px-4 hover:bg-gray-100 text-gray-700">
-                            <div class=" flex ">
+                            <div class=" flex-col ">
                                 <img src="{{ $book->cover_image }}" alt=""
                                     class="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;">
+                                    <p class="font-bold">{{ $book->title }}</p>
+                                    <p>by {{Str::limit(explode('; ',$book->authors->first()->name)[0], 80)}}</p>
                             </div>
                         </button>
                     </div>
@@ -96,9 +99,11 @@
                         <button type="button" data-modal-target="readProductModal" data-modal-toggle="readProductModal"
                             onclick="openReadModal({{ $book->id }})"
                             class="flex w-full items-center py-2 px-4 hover:bg-gray-100 text-gray-700">
-                            <div class=" flex ">
+                            <div class=" flex-col ">
                                 <img src="{{ $book->cover_image }}" alt=""
                                     class="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;">
+                                    <p class="font-bold">{{ $book->title }}</p>
+                                    <p>by {{Str::limit(explode('; ',$book->authors->first()->name)[0], 80)}}</p>
                             </div>
                         </button>
                     </div>
@@ -138,9 +143,11 @@
                         <button type="button" data-modal-target="readProductModal"
                             data-modal-toggle="readProductModal" onclick="openReadModal({{ $book->id }})"
                             class="flex w-full items-center py-2 px-4 hover:bg-gray-100 text-gray-700">
-                            <div class=" flex ">
+                            <div class=" flex-col ">
                                 <img src="{{ $book->cover_image }}" alt=""
                                     class="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;">
+                                    <p class="font-bold">{{ $book->title }}</p>
+                                    <p>by {{Str::limit(explode('; ',$book->authors->first()->name)[0], 80)}}</p>
                             </div>
                         </button>
                     </div>
@@ -180,9 +187,11 @@
                         <button type="button" data-modal-target="readProductModal"
                             data-modal-toggle="readProductModal" onclick="openReadModal({{ $book->id }})"
                             class="flex w-full items-center py-2 px-4 hover:bg-gray-100 text-gray-700">
-                            <div class=" flex ">
+                            <div class=" flex-col ">
                                 <img src="{{ $book->cover_image }}" alt=""
                                     class="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;">
+                                    <p class="font-bold">{{ $book->title }}</p>
+                                    <p>by {{Str::limit(explode('; ',$book->authors->first()->name)[0], 80)}}</p>
                             </div>
                         </button>
                     </div>
@@ -264,8 +273,7 @@
                     document.getElementById('readDescription').textContent = book.description;
 
                     // Menampilkan penulis
-                    document.getElementById('readAuthors').textContent = book.authors.map(author => author.name).join(
-                        ', ');
+                    document.getElementById('readAuthors').textContent = book.authors.map(author => author.name).join( ', ');
 
                     // Menampilkan genre
                     document.getElementById('readGenres').textContent = book.genres.map(genre => genre.name).join(', ');

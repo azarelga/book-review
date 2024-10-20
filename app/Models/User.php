@@ -13,9 +13,21 @@ class User extends Authenticatable // Change this
     protected $fillable = [
         'name',
         'email',
+        'role',
         'password',
         'username',
     ];
 
-    // Optionally, you can add other user-related properties here
+    public function hasRole($role)
+    {
+        return $this->role === $role;
+    }
+
+    public function reviews()
+    {
+        if ($this->role === 'user') {
+            return $this->hasMany(Review::class);
+        }
+        return null;
+    }
 }
