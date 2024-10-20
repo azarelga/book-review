@@ -25,16 +25,24 @@ $logout = function (Logout $logout) {
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')" wire:navigate>
-                        {{ __('Welcome') }}
+                        {{ __('Home') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard') }}
+                    @auth
+                    <x-nav-link :href="route('profile')" :active="request()->routeIs('profile')" wire:navigate>
+                        {{ __('Profile') }}
                     </x-nav-link>
+                        @if(Auth::user()->role === 'admin')
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                        @endif
+                    @endauth
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
+            <div class="hidden sm:flex sm:items-center sm:ms-3 gap-x-3">
+                    @auth
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
@@ -54,8 +62,8 @@ $logout = function (Logout $logout) {
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile')" wire:navigate>
-                            {{ __('Profile') }}
+                        <x-dropdown-link :href="route('settings')" wire:navigate>
+                            {{ __('Settings') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -66,8 +74,15 @@ $logout = function (Logout $logout) {
                         </button>
                     </x-slot>
                 </x-dropdown>
-            </div>
-
+                    @else
+                        <x-nav-link :href="route('login')" :active="request()->routeIs('login')" wire:navigate>
+                            {{ __('Login') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('register')" :active="request()->routeIs('register')" wire:navigate>
+                            {{ __('Register') }}
+                        </x-nav-link>
+                    @endauth
+                </div>
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open"
@@ -96,6 +111,7 @@ $logout = function (Logout $logout) {
         </div>
 
         <!-- Responsive Settings Options -->
+        @auth
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800" x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name"
@@ -116,5 +132,6 @@ $logout = function (Logout $logout) {
                 </button>
             </div>
         </div>
+        @endauth
     </div>
 </nav>

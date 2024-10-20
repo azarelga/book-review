@@ -17,7 +17,7 @@
 
 <body class="h-full">
     <div class="min-h-full">
-        <x-navbar />
+    <livewire:layout.navigation />
 
         <x-header>{{ $title }}</x-header>
 

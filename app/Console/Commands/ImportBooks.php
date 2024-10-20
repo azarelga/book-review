@@ -15,7 +15,8 @@ class ImportBooks extends Command
     protected $signature = 'import:books {file}';
     protected $description = 'Import books from a CSV file';
 
-    public function handle(){
+    public function handle()
+    {
         $file = $this->argument('file');
         $data = array_map('str_getcsv', file($file));
         $headers = array_shift($data);
@@ -62,7 +63,7 @@ class ImportBooks extends Command
                 'description' => $row['description'] ?? '',
                 'publisher' => $row['publisher'] ?? '',
                 'published_date' => $publishDate,
-                'rating' => $row['rating'] ?? null,
+                'rating' => 0,
                 'language' => $row['language'] ?? '',
                 'pages' => (int) $row['pages'],
                 'price' => (float) $row['price'],

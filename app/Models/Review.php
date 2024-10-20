@@ -14,7 +14,8 @@ class Review extends Model
         'user_id',
         'book_id',
         'rating',
-        'review',
+        'title',
+        'description'
     ];
 
     // Define the relationship: A review belongs to a book

@@ -4,32 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Author;
-use App\Http\Middleware\CheckRole;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\GenreController;
+use App\Http\Middleware\CheckRole;
 
 
-Route::get("/", function () {
-    $books = Book::mostpopular()->take(20);
-    $mostPopularGenre = Genre::mostPopular();
-    $mostPopularAuthor = Author::mostPopular();
-    $randomGenre = Genre::randomGenre();
-    $randomAuthor = Author::randomAuthor();
-
-    return view('welcome', [
-        'title' => 'Home',
-        'books' => $books,
-        'popularGenre' => $mostPopularGenre,
-        'booksInPopularGenre' => Book::findByGenre($mostPopularGenre->id)->take(30),
-        'popularAuthor' => $mostPopularAuthor->name,
-        'booksByPopularAuthor' =>  Book::findByAuthor($mostPopularAuthor->id)->take(30),
-        'randomGenre' => $randomGenre,
-        'booksInRandomGenre' => Book::findByGenre($randomGenre->id)->take(30),
-        'randomAuthor' => $randomAuthor,
-        'booksByRandomAuthor' => Book::findByAuthor($randomAuthor->id)->take(30),
-    ]);
-})->name('welcome');
+Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
 // Home Page Route
 Route::get('/dashboard', function () {
@@ -52,14 +34,17 @@ Route::get('/dashboard', function () {
     ]);
 })->middleware(CheckRole::class . ':admin')->name('dashboard');
 
-Route::get('/books/{id}', function ($id) {
-    return Book::with('authors', 'genres')->find($id);
-});
+Route::get('/books/{id}', [BookController::class, 'show'])->name('books.book');
 
 // Profile Route (with authentication)
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+// Settings Route (with authentication)
+Route::view('settings', 'settings')
+    ->middleware(['auth'])
+    ->name('settings');
 
 // Book, Author, and Genre Resource Routes
 Route::resource('books', BookController::class)->middleware(['auth', 'verified']);

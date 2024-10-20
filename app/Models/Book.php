@@ -31,14 +31,20 @@ class Book extends Model
     {
         return $this->belongsToMany(Genre::class);
     }
-
-    public static function mostpopular(){
-        // sort berdasarkan rating terbaik
-        return self::orderBy('rating','desc')->get();
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 
-    public static function findByAuthor($authorId){
-        return self::whereHas('authors', function($query) use ($authorId){
+
+    public static function mostPopular()
+    {
+        return self::orderBy('rating', 'desc')->get();
+    }
+
+    public static function findByAuthor($authorId)
+    {
+        return self::whereHas('authors', function ($query) use ($authorId) {
             $query->where('authors.id', $authorId);
         })->get();
     }
@@ -49,4 +55,3 @@ class Book extends Model
         })->get();
     }
 }
-

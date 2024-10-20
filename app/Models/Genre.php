@@ -15,11 +15,11 @@ class Genre extends Model
     {
         return $this->belongsToMany(Book::class);
     }
-
     public static function mostPopular()
     {
         return static::withCount('books')
             ->orderBy('books_count', 'desc')
+            ->select('id', 'name')
             ->first();
     }
 

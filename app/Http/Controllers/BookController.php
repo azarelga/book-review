@@ -12,6 +12,12 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests; // Add this line
 class BookController extends Controller
 {
     use AuthorizesRequests;
+    public function show($id)
+    {
+        $book = Book::findOrFail($id); // Find the book by ID
+        return view('books.book', compact('book')); // Pass the book to the view
+    }
+
     public function index()
     {
         // Fetch all books with authors and genres

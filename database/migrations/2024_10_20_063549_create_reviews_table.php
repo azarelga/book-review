@@ -13,7 +13,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // User who made the review
             $table->foreignId('book_id')->constrained()->onDelete('cascade'); // The book being reviewed
             $table->integer('rating');  // Rating (e.g., 1-5 stars)
-            $table->text('content');  // Review content
+            $table->text('title');  // Review content
+            $table->text('description');  // Review content
             $table->timestamps();  // Created_at and updated_at timestamps
         });
     }

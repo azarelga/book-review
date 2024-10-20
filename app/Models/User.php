@@ -25,9 +25,6 @@ class User extends Authenticatable // Change this
 
     public function reviews()
     {
-        if ($this->role === 'user') {
-            return $this->hasMany(Review::class);
-        }
-        return null;
+        return $this->hasMany(Review::class);
     }
 }
