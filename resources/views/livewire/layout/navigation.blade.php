@@ -5,7 +5,7 @@ use App\Livewire\Actions\Logout;
 $logout = function (Logout $logout) {
     $logout();
 
-    $this->redirect('/', navigate: true);
+    redirect()->intended(route('welcome'));
 };
 
 ?>
@@ -17,8 +17,9 @@ $logout = function (Logout $logout) {
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" wire:navigate>
+                    <a href="{{ route('welcome') }}" class="flex items-center" wire:navigate>
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <h2 class="p-4 font-bold">RateMyBooks</h2>
                     </a>
                 </div>
 
@@ -47,7 +48,7 @@ $logout = function (Logout $logout) {
                     <x-slot name="trigger">
                         <button
                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name"
+                            <div x-data="{{ json_encode(['username' => auth()->user()->username]) }}" x-text="username"
                                 x-on:profile-updated.window="name = $event.detail.name"></div>
 
                             <div class="ms-1">
@@ -67,7 +68,7 @@ $logout = function (Logout $logout) {
                         </x-dropdown-link>
 
                         <!-- Authentication -->
-                        <button wire:click="logout" class="w-full text-start">
+                        <button wire:click="logout" :href="#" class="w-full text-start">
                             <x-dropdown-link>
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
@@ -125,7 +126,7 @@ $logout = function (Logout $logout) {
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
-                <button wire:click="logout" class="w-full text-start">
+                <button wire:click="logout" :class="w-full text-start">
                     <x-responsive-nav-link>
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>

@@ -17,7 +17,16 @@ $login = function () {
 
     Session::regenerate();
 
-    $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+    // if (Auth::user()->hasRole('admin')) {
+    //     $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+    // } else {
+    //     $this->redirectIntended(default: route('welcome', absolute: false), navigate: true);
+    // }
+    if (Auth::user()->hasRole('admin')) {
+        return redirect()->intended(route('dashboard'));
+    } else {
+        return redirect()->intended(route('welcome'));
+    }
 };
 
 ?>
@@ -60,9 +69,11 @@ $login = function () {
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
-            <x-secondary-button class="ms-3">
-                {{ __('Register') }}
-            </x-secondary-button>
+            <a href="{{route('register')}}">
+                <x-secondary-button class="ms-3">
+                    {{ __('Register') }}
+                </x-secondary-button>
+            </a>
             <x-primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-primary-button>

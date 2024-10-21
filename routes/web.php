@@ -25,16 +25,7 @@ Route::get('/dashboard', function () {
     ]);
 })->middleware(CheckRole::class . ':admin')->name('dashboard');
 
-Route::get('/dashboard', function () {
-    $books = Book::paginate(10);
-    return view('admin.dashboard', [
-        'title' => 'Home',
-        'books' => $books,
-        'authors' => Author::all(),
-        'genres' => Genre::all(),
-    ]);
-})->middleware(CheckRole::class . ':admin')->name('dashboard');
-
+// Book Pages
 Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books.index');
 Route::get('/search', [App\Http\Controllers\BookController::class, 'search'])->name('books.search');
 Route::get('/books/{id}', [BookController::class, 'show'])->name('books.book');

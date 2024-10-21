@@ -12,15 +12,15 @@ class User extends Authenticatable // Change this
 
     protected $fillable = [
         'name',
+        'username',
         'email',
         'role',
         'password',
-        'username',
     ];
 
     public function hasRole($role)
     {
-        return $this->role === $role;
+        return $this->role == $role;
     }
 
     public function reviews()

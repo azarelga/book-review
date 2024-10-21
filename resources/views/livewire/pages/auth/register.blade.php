@@ -14,6 +14,7 @@ layout('layouts.guest');
 
 state([
     'name' => '',
+    'username' => '',
     'email' => '',
     'password' => '',
     'password_confirmation' => ''
@@ -21,6 +22,7 @@ state([
 
 rules([
     'name' => ['required', 'string', 'max:255'],
+    'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
     'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
     'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
 ]);
@@ -34,7 +36,7 @@ $register = function () {
 
     Auth::login($user);
 
-    $this->redirect(route('dashboard', absolute: false), navigate: true);
+    redirect()->intended(route('welcome'));
 };
 
 ?>
@@ -50,7 +52,7 @@ $register = function () {
         <!-- Username -->
         <div class="mt-4">
             <x-input-label for="username" :value="__('Username')" />
-            <x-text-input wire:model="usenrame" id="username" class="block mt-1 w-full" type="username" name="username" required autocomplete="username" />
+            <x-text-input wire:model="username" id="username" class="block mt-1 w-full" type="text" name="username" required autocomplete="username" />
             <x-input-error :messages="$errors->get('username')" class="mt-2" />
         </div>
 

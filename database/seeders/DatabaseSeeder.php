@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Books imported successfully through seeder!');
         User::factory()->create([
             'name' => 'Admin',
+            'username' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('password'),
             'role' => 'admin',
