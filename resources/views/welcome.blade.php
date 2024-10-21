@@ -1,5 +1,12 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
+    <div class="mb-5">
+        <h1 class="text-3xl pb-5 font-bold">Search</h1>
+        <form action="{{ route('books.search') }}" method="GET">
+            <input type="text" name="search" placeholder="Search books..." class="border p-2 rounded">
+            <button type="submit" class="bg-blue-500 text-white p-2 rounded">Search</button>
+        </form>
+    </div>
     <br>
 
     <div class="w-full relative">

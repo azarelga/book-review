@@ -34,6 +34,7 @@ Route::get('/dashboard', function () {
     ]);
 })->middleware(CheckRole::class . ':admin')->name('dashboard');
 
+Route::get('/search', [App\Http\Controllers\BookController::class, 'search'])->name('books.search');
 Route::get('/books/{id}', [BookController::class, 'show'])->name('books.book');
 
 // Profile Route (with authentication)

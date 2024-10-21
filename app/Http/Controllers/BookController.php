@@ -18,6 +18,19 @@ class BookController extends Controller
         return view('books.book', compact('book')); // Pass the book to the view
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $books = Book::query()
+            ->when($search, function ($query, $search) {
+                return $query->where('title', 'like', "%{$search}%");
+            })
+            ->paginate(10);
+
+        return view('books.index', compact('books', 'search'));
+    }
+
     public function index()
     {
         // Fetch all books with authors and genres
