@@ -20,13 +20,20 @@ class BookController extends Controller
 
     public function search(Request $request)
     {
+        $filter = $request->input('by');
         $search = $request->input('search');
 
-        $books = Book::query()
-            ->when($search, function ($query, $search) {
-                return $query->where('title', 'like', "%{$search}%");
-            })
-            ->paginate(10);
+        if ($filter == 'author') {
+            $books = Book::findByAuthor(Author::findByName($search))->paginate(10);
+        } else if ($filter == 'genre') {
+            $books = Book::findByGenre(Genre::findByName($search))->paginate(10);
+        } else {
+            $books = Book::query()
+                ->when($search, function ($query, $search) {
+                    return $query->where('title', 'like', "%{$search}%");
+                })
+                ->paginate(10);
+        }
 
         return view('books.index', compact('books', 'search'));
     }
@@ -34,8 +41,6 @@ class BookController extends Controller
     public function index()
     {
         // Fetch all books with authors and genres
-        $books = Book::with(['authors', 'genres'])->get();
-        return view('books.index', compact('books'));
     }
 
     public function create()

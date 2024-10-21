@@ -1,24 +1,28 @@
 <x-layout>
-    <x-slot:title>{{ $title }}</x-slot:title>
+    <x-slot:title>Home</x-slot:title>
     <div class="mb-5">
         <h1 class="text-3xl pb-5 font-bold">Search</h1>
         <form action="{{ route('books.search') }}" method="GET">
             <input type="text" name="search" placeholder="Search books..." class="border p-2 rounded">
+            <select id="by" name="by" class="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
+                <option value="title">Title</option>
+                <option value="genre">Genre</option>
+                <option value="author">Author</option>
+            </select>
             <button type="submit" class="bg-blue-500 text-white p-2 rounded">Search</button>
         </form>
     </div>
     <br>
-
+    @foreach ($datas as $data)
     <div class="w-full relative">
-        <div class="swiper multiple-slide-carousel swiper-container relative">
-            <h2 class="text-3xl font-bold mb-4">Books You Might Like</h2>
+        <div class="swiper swiper-container items-center relative">
+            <h2 class="text-3xl font-bold mb-4">{{$data[1]}}</h2>
             <div class="swiper-wrapper">
-                @foreach ($books as $book)
+                @foreach ($data[0] as $book)
                     <div class="swiper-slide">
-                        <a type="button" class="flex text-center w-full py-2 px-4 hover:bg-gray-100 text-gray-700" href="{{ route('books.book', ['id' => $book->id]) }}">
+                        <a type="button" class="block text-center p-4" href="{{ route('books.book', ['id' => $book->id]) }}">
                             <div class="flex-col">
-                                <img src="{{ $book->cover_image }}" alt=""
-                                    class="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms; ">
+                                <img src="{{ $book->cover_image }}" alt="" class="mx-auto h-48 object-contain">
                                     <p class="font-bold">{{ $book->title }}</p>
                                     <p>by {{Str::limit(explode('; ',$book->authors->first()->name)[0], 80)}}</p>
                             </div>
@@ -49,6 +53,7 @@
             <div class="swiper-pagination"></div>
         </div>
     </div>
+    @endforeach
 
     <script>
         function openReadModal(bookId) {

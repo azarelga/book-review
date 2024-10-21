@@ -26,7 +26,6 @@ Route::get('/dashboard', function () {
 })->middleware(CheckRole::class . ':admin')->name('dashboard');
 
 // Book Pages
-Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books.index');
 Route::get('/search', [App\Http\Controllers\BookController::class, 'search'])->name('books.search');
 Route::get('/books/{id}', [BookController::class, 'show'])->name('books.book');
 Route::post('/books/{id}', [ReviewController::class, 'store'])
