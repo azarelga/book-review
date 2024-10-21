@@ -18,10 +18,17 @@
                         class="display: block;background-color: hsl(0, 0%, 90%);height: ">
                 </div>
                 <div class="col-span-2">
-                    <div class="mb-5 mx-auto">
+                    <div class="mb-5 gap-3 mx-auto">
                         <h1 class="text-3xl font-semibold text-gray-900 ">{{ $book->title }}</h1>
                         <h2 class="text-xl font-bold text-gray-500 ">
                             {{ explode('; ', $book->authors->first()->name)[0] }}</h2>
+                        <!--  list genre of the books $book->genre -->
+                        <h2 class="text-lg mt-4 font-semibold text-gray-900 ">Genres</h2>
+                        <div class="p-4 gap-2 flex flex-wrap rounded bg-gray-200 ">
+                            @foreach ($book->genres as $genre)
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-3.5 py-1.5 rounded dark:bg-blue-900 dark:text-blue-300">{{Str::remove("'",$genre->name)}}</span>
+                            @endforeach
+                        </div>
                         <p class="mt-4 text-lg font-normal text-gray-900 ">{{ $book->description }}</p>
                     </div>
                     <div class="flex items-center gap-2">
