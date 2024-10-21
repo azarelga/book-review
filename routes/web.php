@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Book;
 use App\Models\Genre;
@@ -36,11 +37,15 @@ Route::get('/dashboard', function () {
 
 Route::get('/search', [App\Http\Controllers\BookController::class, 'search'])->name('books.search');
 Route::get('/books/{id}', [BookController::class, 'show'])->name('books.book');
+Route::post('/books/{id}', [ReviewController::class, 'store'])
+    ->middleware(['auth'])
+    ->name('reviews.store');
 
 // Profile Route (with authentication)
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+Route::get('/profile', [App\Http\Controllers\ReviewController::class, 'index'])->name('profile');
 
 // Settings Route (with authentication)
 Route::view('settings', 'settings')
