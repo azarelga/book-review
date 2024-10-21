@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<img width="1680" alt="Screen Shot 2024-10-21 at 23 12 35" src="https://github.com/user-attachments/assets/3299f56a-6b88-4351-8167-25f978284274"><p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 
 
@@ -28,20 +28,25 @@ Pada database kami, kami memiliki 4 tabel utama yaitu :
 - Authors : berisi data author (id, Name)
 - Genre : berisi data genre (id, Name)
 - Users : berisi data user untuka utentikasi CRUD
+- Reviews : berisi data nilai review (1-5), judul review, dan isi review
 
 Relationship yang kami miliki adalah :
 - Books ---Many to Many--- Authors
 - Books ---Many to Many--- Genres
+- Users ---One to Many--- Reviews
+- Books ---One to Many--- Reviews
 
 ## Plan
 
 Plan kami adalah membuat website yang dapat menampilkan buku, dimana buku ini dapat menjadi referensi apabila dibutuhkan oleh user. User dapat melihat rincian buku dengan melakukan click pada buku yang ada. Dihalaman utama akan disajukan bukun dengan rating terbaik, popular genre, random genre, popular author, dan random author. Data buku dapat ditambahkan oleh user untuk memperbanyak data yang ada. Dari data buku ini, kmai harap dapat membantu user dalam mencari buku dengan lebih mudah.
 
 Week-1 - Membuat project laravel serta melakukan migrasi dan tampilan awal
-
 Week-2 - Mengimplementasikan CRUD dan autentikasi kepada users
+Week-3&4 - Mengimplementasikan CR untuk fitur review buku
 
 ## Screenshot Website
+
+### Old
 
 ![image](https://github.com/user-attachments/assets/31d103b0-ba77-47d8-a6fb-e25e6c06aea6)
 
@@ -55,8 +60,12 @@ Week-2 - Mengimplementasikan CRUD dan autentikasi kepada users
 
 ![image](https://github.com/user-attachments/assets/5ca7a777-7b8f-4b66-a50f-3204c11f720f)
 
+### New
 
-
+<img width="1680" alt="Screen Shot 2024-10-21 at 23 12 04" src="https://github.com/user-attachments/assets/f179ae6f-2ec4-4ea3-8552-2138c3c651c7">
+<img width="1680" alt="Screen Shot 2024-10-21 at 23 12 12" src="https://github.com/user-attachments/assets/2dfd8b8a-0262-4a58-81ca-507bea28d1aa">
+<img width="1680" alt="Screen Shot 2024-10-21 at 23 12 25" src="https://github.com/user-attachments/assets/bce5b0a5-6005-44cf-a7d9-18c10cfe8109">
+<img width="1680" alt="Screen Shot 2024-10-21 at 23 12 35" src="https://github.com/user-attachments/assets/d03a91d6-317a-444a-b099-68b2d1f95be8">
 
 
 ## Link Youtube
