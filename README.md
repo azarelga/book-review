@@ -69,7 +69,10 @@ Week-3&4 - Mengimplementasikan CR untuk fitur review buku
 
 
 ## Link Youtube
+### Part 1
 [Click Me](https://youtu.be/J19kkkr0ey8)
+### Part 2
+[Click Me](https://youtu.be/KlAfbuwbWl0)
   
 ## License
 
